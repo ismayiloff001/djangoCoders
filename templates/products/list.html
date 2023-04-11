@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+{% load change_value_format %}
+{% load pagination %}
+
+
+
+{% block main %}
+    <style>
+    .inp_style{
+        height: 55px!important;
+        border: 2px solid var(--color-light)!important;
+    }
+</style>
+    <main class="main-wrapper">
+        <!-- Start Breadcrumb Area  -->
+        <div class="axil-breadcrumb-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="inner">
+                            <ul class="axil-breadcrumb">
+                                <li class="axil-breadcrumb-item"><a href="index-2.html">Home</a></li>
+                                <li class="separator"></li>
+                                <li class="axil-breadcrumb-item active" aria-current="page">My Account</li>
+                            </ul>
+                            <h1 class="title">Explore All Products</h1>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4">
+                        <div class="inner">
+                            <div class="bradcrumb-thumb">
+                                <img src="{% static '' %}assets/images/product/product-45.png" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb Area  -->
+        <!-- Start Shop Area  -->
+        <div class="axil-shop-area axil-section-gap bg-color-white">
+            <div class="container">
+                <div class="row">
+                    <form action="" method="GET">
+                        <div class="col-lg-12">
+                        <div class="axil-shop-top">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="category-select">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-lg-3">
+                                            <!-- Start Single Select  -->
+                                            <select class="single-select" name="category">
+                                                <option value="">-KATEQORİYA SEÇİN-</option>
+                                                {% for category in categories %}
+                                                    <option value="{{ category.id }}" {% if filter_dict.category_id == category.id %} SELECTED {% endif %} >{{ category.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <!-- End Single Select  -->
+                                        </div>
+                                        <!-- Start Single Select  -->
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-lg-2  mt--10 ml--15">
+                                            <div class="form-group">
+                                                <input type="number" name="min_price" class="inp_style" id="min_price" placeholder="Minimum AZN" {% if filter_dict.min_price %} value="{{ filter_dict.min_price }}" {% endif %}>
+                                                
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-lg-2 mt--10 ml--10">
+                                            <div class="form-group">
+                                                <input type="number" name="max_price" class="inp_style" id="max_price" placeholder="Maksimum AZN" {% if filter_dict.max_price %} value="{{ filter_dict.max_price }}" {% endif %}>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-lg-2 mt--10 ml--10">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary inp_style" style="border: 0px;font-size: 16px;border-radius: 6px;">Axtar</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- End Single Select  -->
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="category-select mt_md--10 mt_sm--10 justify-content-lg-end">
+                                        <!-- Start Single Select  -->
+                                        <select class="single-select" name="order">
+                                            <option {% if filter_dict.order == "latest" %} selected {% endif %} value="latest">Son tarixə görə</option>
+                                            <option {% if filter_dict.order == "oldest" %} selected {% endif %} value="oldest">Köhnə tarixə görə</option>
+                                            <option {% if filter_dict.order == "expensive" %} selected {% endif %} value="expensive">Əvvəlcə bahalı</option>
+                                            <option {% if filter_dict.order == "cheap" %} selected {% endif %} value="cheap">Əvvəlcə ucuz</option>
+                                        </select>
+                                        <!-- End Single Select  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+                <div class="row row--15">
+                    {% for product in products %}
+                    <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
+                                        <div class="axil-product product-style-one">
+                                            <div class="thumbnail">
+                                                <a href="{% url "products:detail" product.id %}">
+                                                    <img style="height: 300px; object-fit: cover;" data-sal="zoom-out" data-sal-delay="100" data-sal-duration="1500" src="{{ product.productimage_set.first.image.url }}" alt="{{ product.name }}">
+                                                </a>
+                                               {% if product.in_sale and product.discount_persentage %}
+                                                <div class="label-block label-right">
+                                                    <div class="product-badget">{{ product.discount_persentage|floatformat:0  }} % endirim</div>
+                                                </div>
+                                                {% endif %}
+                                                <div class="product-hover-action">
+                                                    <ul class="cart-action">
+                                                        <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                                        <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                                        <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <div class="inner">
+                                                    <h5 class="title"><a href="{% url "products:detail" product.id %}">{{ product.name }}</a></h5>
+                                                    {% if product.in_sale and product.discount_persentage %}
+                                                    <div class="product-price-variant">
+                                                        <span class="price current-price text-success">{{ product.discount_price|formatize }} &#8380;</span>
+                                                        <span class="price old-price text-danger">{{ product.price|formatize }} &#8380;</span>
+                                                    </div>
+                                                    {% else %}
+                                                        <div class="product-price-variant">
+                                                            <span class="price current-price">{{ product.price|formatize }} &#8380;</span>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center pt--30">
+{#                    <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Load more</a>#}
+
+                    {% if products.paginator.num_pages > 1 %}
+                        <nav class="custome-pagination">
+                            <ul class="pagination">
+                                {% if products.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ products.previous_page_number }}&{% for key, val in filter_dict.items %}{{ key }}={{ val }}&{% endfor %}">Previous</a>
+                                    </li>
+                                {% endif %}
+
+        {#                      {% for i in products.paginator|create_range:products %}#}
+                                {% for i in products.paginator.page_range %}
+                                    <li class="page-item {% if products.number == i %} active {% endif %}">
+                                        <a class="page-link" href="?page={{i}}&{% for key, val in filter_dict.items %}{{ key }}={{ val }}&{% endfor %}">{{i}}</a>
+                                    </li>
+                                {% endfor %}
+
+                                {% if products.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ products.next_page_number }}&{% for key, val in filter_dict.items %}{{ key }}={{ val }}&{% endfor %}">Next</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+{#                PAGINATION V1#}
+{#                    <nav class="custome-pagination">#}
+{#                        <ul class="pagination justify-content-center">#}
+{#                            {% if products.has_previous %}#}
+{#                            <li class="page-item">#}
+{#                                <a class="page-link" href="?page={{ products.previous_page_number }}&{% for val in filter_dict %}{{val}}{% endfor %}" tabindex="-1" aria-disabled="true">#}
+{#                                    <i class="fa-solid fa-angles-left"></i>#}
+{#                                </a>#}
+{#                            </li>#}
+{#                            {% endif %}#}
+{#                            {% for i in products.paginator.page_range %}#}
+{#                                    <li class="page-item {% if products.number == i %}active{% endif %}">#}
+{#                                        <a class="page-link" href="?page={{i}}&{% for val in filter_dict %}{{val}}{% endfor %}">{{i}}</a>#}
+{#                                    </li>#}
+{#                            {% endfor %}#}
+{#                            {% if products.has_next %}#}
+{#                            <li class="page-item">#}
+{#                                <a class="page-link" href="?page={{ products.next_page_number }}&{% for val in filter_dict %}{{val}}{% endfor %}">#}
+{#                                    <i class="fa-solid fa-angles-right"></i>#}
+{#                                </a>#}
+{#                            </li>#}
+{#                            {% endif %}#}
+{#                        </ul>#}
+{#                    </nav>#}
+                </div>
+            </div>
+            <!-- End .container -->
+        </div>
+        <!-- End Shop Area  -->
+        <!-- Start Axil Newsletter Area  -->
+        <div class="axil-newsletter-area axil-section-gap pt--0">
+            <div class="container">
+                <div class="etrade-newsletter-wrapper bg_image bg_image--5">
+                    <div class="newsletter-content">
+                        <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
+                        <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
+                        <div class="input-group newsletter-form">
+                            <div class="position-relative newsletter-inner mb--15">
+                                <input placeholder="example@gmail.com" type="text">
+                            </div>
+                            <button type="submit" class="axil-btn mb--15">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End .container -->
+        </div>
+        <!-- End Axil Newsletter Area  -->
+    </main>
+{% endblock %}
+
