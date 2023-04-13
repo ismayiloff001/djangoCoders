@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from services.generator import Generator
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 User = get_user_model()
@@ -48,13 +49,13 @@ def register_view(request):
             send_mail(
                 "Activation Code",
                 f"Sizin aktivasiya kodunuz {new_user.activation_code}",
-                "admin@gmail.com",
+                settings.EMAIL_HOST_USER,
                 [new_user.email]
             )
 
             # login(request, new_user)
 
-            return redirect('/list')
+            return redirect('activate-account', slug = new_user.slug)
         
         else:
             print(form.errors)
@@ -69,3 +70,10 @@ def logout_view(request):
     logout(request)
     
     return redirect('/list')
+
+def activate_account_view(request, slug):
+    user = get_object_or_404(User, slug=slug)
+    context ={
+
+    }
+    return render(request, "account/activate.html", context)
