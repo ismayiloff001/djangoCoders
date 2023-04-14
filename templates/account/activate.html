@@ -63,7 +63,7 @@
                         <h3 class="title">I'm New Here</h3>
                         <p class="b2 mb--55">Enter your detail below</p>
                         <form class="singin-form" method="POST">
-                            
+                            {% csrf_token %}
                             <div class="form-group">
                                 <label>Kodu daxil edin:</label>
 {#                                <input type="text" class="form-control" name="username" value="anniemario">#}

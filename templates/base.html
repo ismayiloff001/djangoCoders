@@ -73,7 +73,13 @@
                             <ul class="quick-link">
                                 <li><a href="#">Help</a></li>
                                 <li><a href="sign-up.html">Join Us</a></li>
-                                <li><a href="/account/login.html">Sign In</a></li>
+                                {% if user.is_authenticated %}
+                                    <li><a href="{% url 'logout' %}">LOG OUT</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'login' %}">LOG In</a></li>
+                                {% endif %}
+
+                                
                             </ul>
                         </div>
                     </div>
@@ -305,7 +311,7 @@
                             <div class="inner">
                                 <ul>
                                     <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="sign-up.html">Login / Register</a></li>
+                                    <li><a href="{% url 'login' %}">Login / Register</a></li>
                                     <li><a href="cart.html">Cart</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                     <li><a href="shop.html">Shop</a></li>

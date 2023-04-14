@@ -40,7 +40,7 @@ def register_view(request):
             password = form.cleaned_data.get("password")
             new_user.set_password(password)
             new_user.is_active = False
-            new_user.activatin_code = Generator.create_code_for_activate(size=6,model_=User)
+            new_user.activation_code = Generator.create_code_for_activate(size=6,model_=User)
             new_user.activation_code_expires_at = timezone.now() + timezone.timedelta(minutes=15)
             new_user.save()
 
@@ -49,6 +49,7 @@ def register_view(request):
             send_mail(
                 "Activation Code",
                 f"Sizin aktivasiya kodunuz {new_user.activation_code}",
+
                 settings.EMAIL_HOST_USER,
                 [new_user.email]
             )
@@ -71,9 +72,21 @@ def logout_view(request):
     
     return redirect('/list')
 
+# @check_activation_code_time
 def activate_account_view(request, slug):
-    user = get_object_or_404(User, slug=slug)
-    context ={
+    user  = get_object_or_404(User, slug=slug)
+    context = {}
 
-    }
-    return render(request, "account/activate.html", context)
+    if request.method == 'POST':
+        code = request.POST.get('code')
+        if code == user.activation_code:
+            user.is_active = True
+            user.activation_code = None
+            user.activation_code_expires_at = None
+            user.save()
+
+            login(request, user)
+            return redirect('/login/')
+        else:
+            return "Yalnis sifre!"
+    return render(request, 'account/activate.html', context)
