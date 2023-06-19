@@ -11,7 +11,7 @@ def index_view(request):
         discount = Coalesce("discount_price", 0, output_field=FloatField())
     ).annotate(
         total_price = F("price") - F("discount_price")
-    ).order_by("-created_at")
+    )
 
     context = {
         "categories": categories,

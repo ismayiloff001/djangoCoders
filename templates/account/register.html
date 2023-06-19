@@ -7,12 +7,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade || Sign Up</title>
+    <title>OBOY-Qeydiyyat</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static ''%}assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static ''%}assets/images/favicon-16x16.png">
 
     <!-- CSS
     ============================================ -->
@@ -39,12 +39,12 @@
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <a href="index-2.html" class="site-logo"><img src="{% static ''%}assets/images/logo/logo.png" alt="logo"></a>
+                    <a href="{% url 'list' %}" class="site-logo"><img class = "cimgs" src="{% static "" %}assets/images/logo/oboyaz-logo-depositphotos-bgremo.png" alt="logo"></a>
                 </div>
                 <div class="col-md-6">
                     <div class="singin-header-btn">
-                        <p>Already a member?</p>
-                        <a href="sign-in.html" class="axil-btn btn-bg-secondary sign-up-btn">Sign In</a>
+                        <p>Hesabın var?</p>
+                        <a href="{% url "login" %}" class="axil-btn btn-warning sign-up-btn">Giriş</a>
                     </div>
                 </div>
             </div>
@@ -54,14 +54,14 @@
         <div class="row">
             <div class="col-xl-4 col-lg-6">
                 <div class="axil-signin-banner bg_image bg_image--10">
-                    <h3 class="title">We Offer the Best Products</h3>
+       
                 </div>
             </div>
             <div class="col-lg-6 offset-xl-2">
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
-                        <h3 class="title">I'm New Here</h3>
-                        <p class="b2 mb--55">Enter your detail below</p>
+                        <h3 class="title">Qeydiyyat!</h3>
+                        <p class="b2 mb--55 text-black">Zəhmət olmasa, boş xanaları doldurun.</p>
                         <form class="singin-form" method="post">
                             {% csrf_token %}
 
@@ -74,7 +74,7 @@
                             {% endfor %}
                         
                             <div class="form-group">
-                                <button type="submit" class="axil-btn btn-bg-primary submit-btn">Create Account</button>
+                                <button type="submit" class="axil-btn btn-warning submit-btn">Davam et!</button>
                             </div>
                         </form>
                     </div>

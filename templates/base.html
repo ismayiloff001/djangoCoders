@@ -9,12 +9,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade</title>
+    <title>OBOY || ƏSAS SƏHİFƏ</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon-16x16.png' %}">
 
     <!-- CSS
     ============================================ -->
@@ -48,22 +48,22 @@
                         <div class="header-top-dropdown">
                             <div class="dropdown">
                                 <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    English
+                                    AZ
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">English</a></li>
-                                    <li><a class="dropdown-item" href="#">Arabic</a></li>
-                                    <li><a class="dropdown-item" href="#">Spanish</a></li>
+                                    <li><a class="dropdown-item" href="#">AZ</a></li>
+                                    <li><a class="dropdown-item" href="#">RU</a></li>
+                                    <li><a class="dropdown-item" href="#">EN</a></li>
                                 </ul>
                             </div>
                             <div class="dropdown">
                                 <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    USD
+                                    AZN
                                 </button>
                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">AZN</a></li>
                                     <li><a class="dropdown-item" href="#">USD</a></li>
-                                    <li><a class="dropdown-item" href="#">AUD</a></li>
-                                    <li><a class="dropdown-item" href="#">EUR</a></li>
+                                    <li><a class="dropdown-item" href="#">RUB</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -71,12 +71,12 @@
                     <div class="col-lg-6 col-sm-6 col-12">
                         <div class="header-top-link">
                             <ul class="quick-link">
-                                <li><a href="#">Help</a></li>
-                                <li><a href="sign-up.html">Join Us</a></li>
+                                <li><a href="#">Kömək</a></li>
+                                <li><a href="{% url 'register' %}">Qeydiyyat</a></li>
                                 {% if user.is_authenticated %}
-                                    <li><a href="{% url 'logout' %}">LOG OUT</a></li>
+                                    <li><a href="{% url 'logout' %}">Çıxış</a></li>
                                 {% else %}
-                                    <li><a href="{% url 'login' %}">LOG In</a></li>
+                                    <li><a href="{% url 'login' %}">Giriş</a></li>
                                 {% endif %}
 
                                 
@@ -93,7 +93,7 @@
                 <div class="header-navbar">
                     <div class="header-brand">
                         <a href="{% url "index" %}" class="logo logo-dark">
-                            <img src="{% static '' %}assets/images/logo/logo.png" alt="Site Logo">
+                            <img src="{% static '' %}assets/images/logo/oboyaz-logo-depositphotos-bgremo.png" alt="Site Logo">
                         </a>
                         <a href="{% url "index" %}" class="logo logo-light">
                             <img src="{% static '' %}assets/images/logo/logo-light.png" alt="Site Logo">
@@ -110,7 +110,7 @@
                             </div>
                             <ul class="mainmenu">
                                 <li class="menu-item-has-children">
-                                    <a href="#">Home</a>
+                                    <a href="#">Əsas</a>
                                     <ul class="axil-submenu">
                                         <li><a href="index-1.html">Home - Electronics</a></li>
                                         <li><a href="index-3.html">Home - NFT</a></li>
@@ -122,7 +122,7 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">Shop</a>
+                                    <a href="#">Məshullar</a>
                                     <ul class="axil-submenu">
                                         <li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
                                         <li><a href="shop.html">Shop no Sidebar</a></li>
@@ -136,7 +136,7 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">Pages</a>
+                                    <a href="#">Səhifələr</a>
                                     <ul class="axil-submenu">
                                         <li><a href="wishlist.html">Wishlist</a></li>
                                         <li><a href="cart.html">Cart</a></li>
@@ -152,20 +152,9 @@
                                         <li><a href="typography.html">Typography</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="about-us.html">About</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Blog</a>
-                                    <ul class="axil-submenu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-grid.html">Blog Grid</a></li>
-                                        <li><a href="blog-details.html">Standard Post</a></li>
-                                        <li><a href="blog-gallery.html">Gallery Post</a></li>
-                                        <li><a href="blog-video.html">Video Post</a></li>
-                                        <li><a href="blog-audio.html">Audio Post</a></li>
-                                        <li><a href="blog-quote.html">Quote Post</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="about-us.html">Haqqımızda</a></li>
+                               
+                                <li><a href="contact.html">Əlaqə</a></li>
                             </ul>
                         </nav>
                         <!-- End Mainmanu Nav -->
@@ -173,7 +162,7 @@
                     <div class="header-action">
                         <ul class="action-list">
                             <li class="axil-search d-xl-block d-none">
-                                <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
+                                <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="Mən axtarıram..." autocomplete="off">
                                 <button type="submit" class="icon wooc-btn-search">
                                     <i class="flaticon-magnifying-glass"></i>
                                 </button>
@@ -199,23 +188,23 @@
                                     <i class="flaticon-person"></i>
                                 </a>
                                 <div class="my-account-dropdown">
-                                    <span class="title">QUICKLINKS</span>
+                                    <span class="title">HESAB</span>
                                     <ul>
                                         <li>
-                                            <a href="my-account.html">My Account</a>
+                                            <a href="my-account.html">Şəxsi məlumatlarım</a>
                                         </li>
                                         <li>
-                                            <a href="#">Initiate return</a>
+                                            <a href="#">Əvvələ qayıt</a>
                                         </li>
                                         <li>
-                                            <a href="#">Support</a>
+                                            <a href="#">Haqqında</a>
                                         </li>
                                         <li>
-                                            <a href="#">Language</a>
+                                            <a href="#">Dil</a>
                                         </li>
                                     </ul>
-                                    <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
-                                    <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                                    <a href="sign-in.html" class="axil-btn btn-bg-primary">Giriş</a>
+                                    <div class="reg-footer text-center">Hesabın yoxdur? <a href="{% url "register" %}" class="btn-link">Qeydiyyat.</a></div>
                                 </div>
                             </li>
                             <li class="axil-mobile-toggle">
@@ -235,13 +224,13 @@
                     <div class="col-xl-5 col-lg-6 col-md-10">
                         <div class="header-campaign-activation axil-slick-arrow arrow-both-side header-campaign-arrow">
                             <div class="slick-slide">
-                                <div class="campaign-content">
-                                    <p>STUDENT NOW GET 10% OFF : <a href="#">GET OFFER</a></p>
+                                <div class="campaign-content bg-danger">
+                                    <p>BU GÜNƏ ÖZƏL, 30% ENDİRİM : <a href="#">DAXİL OL!</a></p>
                                 </div>
                             </div>
                             <div class="slick-slide">
-                                <div class="campaign-content">
-                                    <p>STUDENT NOW GET 10% OFF : <a href="#">GET OFFER</a></p>
+                                <div class="campaign-content bg-danger">
+                                    <p>FÜRSƏTDƏN YARARLANMAĞA TƏLƏSİN! : <a href="#">DAXİL OL!</a></p>
                                 </div>
                             </div>
                         </div>
@@ -269,13 +258,13 @@
                         <div class="axil-footer-widget pr--30">
                             <div class="logo mb--30">
                                 <a href="index-2.html">
-                                    <img class="light-logo" src="{% static '' %}assets/images/logo/logo.png" alt="Logo Images">
+                                    <img class="light-logo" src="{% static '' %}assets/images/logo/oboyaz-logo-depositphotos-bgremo.png" alt="Logo Images">
                                 </a>
                             </div>
                             <div class="inner">
-                                <p>685 Market Street <br>
-                                Las Vegas, LA 95820, <br>
-                                United States.
+                                <p>10.000-dən çox məhsul, <br>
+                                Pulsuz çatdırılma, <br>
+                                Onlayn xidmət.
                                 </p>
                                 <div class="social-share">
                                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -294,11 +283,10 @@
                             <h5 class="widget-title">ABOUT</h5>
                             <div class="inner">
                                 <ul>
-                                    <li><a href="about-us.html">About</a></li>
-                                    <li><a href="about-us.html">Who We Are</a></li>
-                                    <li><a href="blog.html">Latest Post</a></li>
-                                    <li><a href="shop-sidebar.html">New Arraival</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="about-us.html">Haqqımızda</a></li>
+                                    <li><a href="blog.html">Əvvəlki məhsullar</a></li>
+                                    <li><a href="shop-sidebar.html">Yeni məhsullar</a></li>
+                                    <li><a href="contact.html">Əlaqə</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -307,14 +295,11 @@
                     <!-- Start Single Widget  -->
                     <div class="col-lg-3 col-sm-6">
                         <div class="axil-footer-widget">
-                            <h5 class="widget-title">ACCOUNT</h5>
+                            <h5 class="widget-title">HESAB</h5>
                             <div class="inner">
                                 <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="{% url 'login' %}">Login / Register</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="my-account.html">Mənim hesabım</a></li>
+                                    <li><a href="{% url 'login' %}">Giriş  / Qeydiyyat</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -323,13 +308,13 @@
                     <!-- Start Single Widget  -->
                     <div class="col-lg-3 col-sm-6">
                         <div class="axil-footer-widget">
-                            <h5 class="widget-title">SUPPORT</h5>
+                            <h5 class="widget-title">DƏSTƏK</h5>
                             <div class="inner">
                                 <ul>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="terms-of-service.html">Terms Of Use</a></li>
+                                    <li><a href="privacy-policy.html">Gizlilik siyasəti</a></li>
+                                    <li><a href="terms-of-service.html">Məxfilik şərtləri</a></li>
                                     <li><a href="#">FAQ</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="contact.html">Əlaqə</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -346,11 +331,11 @@
                     <div class="col-xl-7 col-lg-12">
                         <div class="copyright-left d-flex flex-wrap justify-content-xl-start justify-content-center">
                             <ul class="quick-link">
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                                <li><a href="privacy-policy.html">Gizlilik siyasəti</a></li>
+                                <li><a href="terms-of-service.html">Xidmət şərtləri</a></li>
                             </ul>
                             <ul class="quick-link">
-                                <li>© 2022. All rights reserved by <a target="_blank" href="https://axilthemes.com/">Axilthemes</a>.</li>
+                                <li>© 2023. Bütün hüquqlar qorunur. <a target="_blank" href="https://axilthemes.com/">Oboy.az</a>.</li>
                             </ul>
                         </div>
                     </div>
