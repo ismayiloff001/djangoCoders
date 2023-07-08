@@ -38,3 +38,11 @@ def product_list_view(request):
     }
 
     return render(request, "products/list.html", context)
+
+def about_view(request):
+        
+    context = {
+    
+    }
+
+    return render(request, "products/about.html", context)
